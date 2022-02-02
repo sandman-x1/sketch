@@ -4,4 +4,12 @@
     width: 540px;
     height: 720px;
     margin: auto;
+    display: grid;
+    grid-template-columns: repeat(16, 1fr);
+    grid-template-rows: repeat(16, 1fr);
+}
+
+.cell {
+    border-width: 1px;
+    border-style: solid;
 }
