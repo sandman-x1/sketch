@@ -6,7 +6,6 @@ const grid = document.querySelector('.grid')
 const clearButton = document.getElementById('clearButton')
 const colorButton = document.getElementById('colorButton')
 const eraseButton = document.getElementById('eraseButton')
-const cell = document.querySelectorAll('.cell')
 
 let mouseDown = false
 document.body.onmousedown = () => (mouseDown = true)
