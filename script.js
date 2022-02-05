@@ -1,7 +1,20 @@
 const grid = document.querySelector('.grid')
+const clearButton = document.getElementById('clearButton')
+
 let mouseDown = false
 document.body.onmousedown = () => (mouseDown = true)
 document.body.onmouseup = () => (mouseDown = false)
+
+clearButton.onclick = () => resetGrid()
+
+function clearGrid() {
+    grid.innerHTML = ''
+}
+
+function resetGrid() {
+    clearGrid()
+    createGrid(32)
+}
 
 function createGrid(size) {
     grid.style.gridTemplateColumns = `repeat(${size}, 1fr)`
