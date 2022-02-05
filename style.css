@@ -46,3 +46,7 @@ button:hover {
     /* margin: auto; */
     display: grid;
 }
+
+.cell {
+    background-color: #fafafa;
+}

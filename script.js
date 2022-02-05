@@ -1,13 +1,39 @@
+const DEFAULT_MODE = 'color'
+
+let currentMode = DEFAULT_MODE
+
 const grid = document.querySelector('.grid')
 const clearButton = document.getElementById('clearButton')
 const colorButton = document.getElementById('colorButton')
 const eraseButton = document.getElementById('eraseButton')
+const cell = document.querySelectorAll('.cell')
 
 let mouseDown = false
 document.body.onmousedown = () => (mouseDown = true)
 document.body.onmouseup = () => (mouseDown = false)
 
 clearButton.onclick = () => resetGrid()
+colorButton.onclick = () => setMode('color')
+eraseButton.onclick = () => setMode('erase')
+
+function setMode(newMode) {
+    changeButton(newMode)
+    currentMode = newMode
+}
+
+function changeButton(newMode) {
+    if (currentMode === 'color') {
+        colorButton.classList.remove('active')
+    } else if (currentMode === 'erase') {
+        eraseButton.classList.remove('active')
+    }
+
+    if (newMode === 'color') {
+        colorButton.classList.add('active')
+    } else if (newMode === 'erase') {
+        eraseButton.classList.add('active')
+    }
+}
 
 function clearGrid() {
     grid.innerHTML = ''
@@ -33,7 +59,11 @@ function createGrid(size) {
 
 function changeColor(e) {
     if (e.type === 'mouseover' && !mouseDown) return
-    else e.target.style.backgroundColor = '#3b3b3b'
+    if (currentMode === 'color') {
+        e.target.style.backgroundColor = '#3b3b3b'
+    } else if (currentMode === 'erase') {
+        e.target.style.backgroundColor = '#fafafa'
+    }
 }
 
 createGrid(32)
