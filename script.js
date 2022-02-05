@@ -1,5 +1,6 @@
 const grid = document.querySelector('.grid')
 const clearButton = document.getElementById('clearButton')
+const colorButton = document.getElementById('colorButton')
 
 let mouseDown = false
 document.body.onmousedown = () => (mouseDown = true)
