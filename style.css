@@ -22,9 +22,10 @@ button {
 }
 
 .grid {
-    border-style: solid;
-    border-width: 3px;
+    /* border-style: solid;
+    border-width: 3px; */
     background-color: white;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 4px 18px 0px;
     width: 540px;
     height: 540px;
     /* margin: auto; */
