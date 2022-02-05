@@ -31,6 +31,11 @@ button:hover {
     scale: 1.1;
 }
 
+.active {
+    background-color: #3b3b3b;
+    color: white;
+}
+
 .grid {
     /* border-style: solid;
     border-width: 3px; */
