@@ -9,6 +9,7 @@ const clearButton = document.getElementById('clearButton')
 const colorButton = document.getElementById('colorButton')
 const eraseButton = document.getElementById('eraseButton')
 const rainbowButton = document.getElementById('rainbowButton')
+const greyButton = document.getElementById('greyButton')
 const sizeSlider = document.getElementById('sizeSlider')
 const sizeTxt = document.getElementById('sizeTxt')
 
@@ -20,6 +21,7 @@ clearButton.onclick = () => resetGrid()
 colorButton.onclick = () => setMode('color')
 eraseButton.onclick = () => setMode('erase')
 rainbowButton.onclick = () => setMode('rainbow')
+greyButton.onclick = () => setMode('grey')
 sizeSlider.onmousemove = (e) => newSize(e.target.value)
 sizeSlider.onmouseup = () => changeSize(currentSize)
 
@@ -53,6 +55,8 @@ function changeButton(newMode) {
         eraseButton.classList.remove('active')
     } else if (currentMode === 'rainbow') {
         rainbowButton.classList.remove('active')
+    } else if (currentMode === 'grey') {
+        greyButton.classList.remove('active')
     }
 
     if (newMode === 'color') {
@@ -61,6 +65,8 @@ function changeButton(newMode) {
         eraseButton.classList.add('active')
     } else if (newMode === 'rainbow') {
         rainbowButton.classList.add('active')
+    }else if (newMode === 'grey') {
+        greyButton.classList.add('active')
     }
 }
 
@@ -82,6 +88,7 @@ function createGrid(size) {
         cell.classList.add('cell');
         cell.addEventListener('mouseover', changeColor);
         cell.addEventListener('mousedown', changeColor);
+        cell.style.backgroundColor = 'rgb(250, 250, 250)'
         grid.appendChild(cell);
     }
 }
@@ -97,7 +104,20 @@ function changeColor(e) {
         const randomG = Math.floor(Math.random() * 256)
         const randomB = Math.floor(Math.random() * 256)
         e.target.style.backgroundColor = `rgb(${randomR}, ${randomG}, ${randomB})`
-    }
+    } else if (currentMode === 'grey') {
+        let actualColor = ''
+        let color = e.target.style.backgroundColor
+        let colorCheck = color.slice(4, 7)
+        if (colorCheck[2] === ',') {
+            actualColor = color.slice(4, 6)
+        } else {
+            actualColor = colorCheck
+        }
+        for (i=actualColor; i>50; i = i-25) {
+            const newColor = actualColor - 25
+            e.target.style.backgroundColor = `rgb(${newColor}, ${newColor}, ${newColor})`
+        }
+    }   
 }
 
 createGrid(currentSize)
