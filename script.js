@@ -8,6 +8,7 @@ const grid = document.querySelector('.grid')
 const clearButton = document.getElementById('clearButton')
 const colorButton = document.getElementById('colorButton')
 const eraseButton = document.getElementById('eraseButton')
+const rainbowButton = document.getElementById('rainbowButton')
 const sizeSlider = document.getElementById('sizeSlider')
 const sizeTxt = document.getElementById('sizeTxt')
 
@@ -18,6 +19,7 @@ document.body.onmouseup = () => (mouseDown = false)
 clearButton.onclick = () => resetGrid()
 colorButton.onclick = () => setMode('color')
 eraseButton.onclick = () => setMode('erase')
+rainbowButton.onclick = () => setMode('rainbow')
 sizeSlider.onmousemove = (e) => newSize(e.target.value)
 sizeSlider.onmouseup = () => changeSize(currentSize)
 
@@ -49,12 +51,16 @@ function changeButton(newMode) {
         colorButton.classList.remove('active')
     } else if (currentMode === 'erase') {
         eraseButton.classList.remove('active')
+    } else if (currentMode === 'rainbow') {
+        rainbowButton.classList.remove('active')
     }
 
     if (newMode === 'color') {
         colorButton.classList.add('active')
     } else if (newMode === 'erase') {
         eraseButton.classList.add('active')
+    } else if (newMode === 'rainbow') {
+        rainbowButton.classList.add('active')
     }
 }
 
@@ -83,9 +89,14 @@ function createGrid(size) {
 function changeColor(e) {
     if (e.type === 'mouseover' && !mouseDown) return
     if (currentMode === 'color') {
-        e.target.style.backgroundColor = '#3b3b3b'
+        e.target.style.backgroundColor = '#323232'
     } else if (currentMode === 'erase') {
         e.target.style.backgroundColor = '#fafafa'
+    } else if (currentMode === 'rainbow') {
+        const randomR = Math.floor(Math.random() * 256)
+        const randomG = Math.floor(Math.random() * 256)
+        const randomB = Math.floor(Math.random() * 256)
+        e.target.style.backgroundColor = `rgb(${randomR}, ${randomG}, ${randomB})`
     }
 }
 
