@@ -1,5 +1,6 @@
 body {
     background-color: #ededed;
+    font-family: 'Roboto', sans-serif;
 }
 
 .container {
@@ -34,6 +35,16 @@ button:hover {
 .active {
     background-color: #3b3b3b;
     color: white;
+}
+
+#sizeSlider {
+    width: 100%;
+}
+
+#sizeTxt {
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 8px;
 }
 
 .grid {

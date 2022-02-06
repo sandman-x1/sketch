@@ -1,11 +1,15 @@
 const DEFAULT_MODE = 'color'
+const DEFAULT_SIZE = 32
 
 let currentMode = DEFAULT_MODE
+let currentSize = DEFAULT_SIZE
 
 const grid = document.querySelector('.grid')
 const clearButton = document.getElementById('clearButton')
 const colorButton = document.getElementById('colorButton')
 const eraseButton = document.getElementById('eraseButton')
+const sizeSlider = document.getElementById('sizeSlider')
+const sizeTxt = document.getElementById('sizeTxt')
 
 let mouseDown = false
 document.body.onmousedown = () => (mouseDown = true)
@@ -14,6 +18,26 @@ document.body.onmouseup = () => (mouseDown = false)
 clearButton.onclick = () => resetGrid()
 colorButton.onclick = () => setMode('color')
 eraseButton.onclick = () => setMode('erase')
+sizeSlider.onmousemove = (e) => newSize(e.target.value)
+sizeSlider.onmouseup = () => changeSize(currentSize)
+
+function newSize(value) {
+    if (value === '1') {
+        currentSize = 16
+    } else if (value === '2') {
+        currentSize = 32
+    } else if (value === '3') {
+        currentSize = 64
+    } else if (value = '4') {
+        currentSize = 96
+    }
+    sizeTxt.textContent = `Size: ${currentSize} x ${currentSize}`
+}
+
+function changeSize(value) {
+    clearGrid()
+    createGrid(value)
+}
 
 function setMode(newMode) {
     changeButton(newMode)
@@ -40,7 +64,7 @@ function clearGrid() {
 
 function resetGrid() {
     clearGrid()
-    createGrid(32)
+    createGrid(currentSize)
 }
 
 function createGrid(size) {
@@ -65,4 +89,4 @@ function changeColor(e) {
     }
 }
 
-createGrid(32)
+createGrid(currentSize)
