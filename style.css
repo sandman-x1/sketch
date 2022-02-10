@@ -3,18 +3,26 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
+#title {
+    font-family: 'Chakra Petch', sans-serif;
+    text-align: center;
+    margin-top: 40px;
+    font-size: 48px;
+    color: #323232;
+}
+
 .container {
     display: flex;
     justify-content: center;
     gap: 100px;
-    margin-top: 80px;
+    margin-top: 40px;
 }
 
 .buttonContainer {
     display: flex;
     flex-direction: column;
     gap: 30px;
-    margin-top: 80px;
+    margin-top: 60px;
 }
 
 button {
